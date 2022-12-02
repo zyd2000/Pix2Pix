@@ -19,7 +19,7 @@ class Dataset(Dataset):
         img_path = os.path.join(self.root_dir, img_file)
         image = np.array(Image.open(img_path))
         input_image = image[:, 256:, :]
-        target_image = image[:, 256:, :]
+        target_image = image[:, :256, :]
 
         augmentations = config.both_transform(image=input_image, image0=target_image)
         input_image = augmentations["image"]
