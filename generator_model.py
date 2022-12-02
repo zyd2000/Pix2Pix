@@ -22,6 +22,7 @@ class Block(nn.Module):
     def forward(self, x):
         x = self.conv(x)
         return self.dropout(x) if self.use_dropout else x
+    ##11
 
 
 class Generator(nn.Module):
