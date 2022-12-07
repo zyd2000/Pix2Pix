@@ -5,7 +5,9 @@ from albumentations.pytorch import ToTensorV2
 train_type = "clothes"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 TRAIN_DIR = "data/" + train_type + "/train"
-VAL_DIR = "data/" + train_type + "/train"
+TEST_DIR = "data/" + train_type + "/test"
+VAL_DIR = "data/" + train_type + "/val"
+# 学习率
 LEARNING_RATE = 2e-4
 BATCH_SIZE = 8
 NUM_WORKERS = 2
@@ -13,8 +15,8 @@ IMAGE_SIZE = 256
 CHANNELS_IMG = 3
 L1_LAMBDA = 100
 LAMBDA_GP = 10
-NUM_EPOCHS = 50
-LOAD_MODEL = False
+NUM_EPOCHS = 200
+LOAD_MODEL = True
 SAVE_MODEL = True
 CHECKPOINT_DISC = train_type + ".disc.pth.tar"
 CHECKPOINT_GEN = train_type + ".gen.pth.tar"

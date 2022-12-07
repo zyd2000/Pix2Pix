@@ -8,7 +8,6 @@ from generator_model import Generator
 from discriminator_model import Discriminator
 from torch.utils.data import DataLoader
 from tqdm import tqdm
-from torchvision.utils import save_image
 
 torch.backends.cudnn.benchmark = True
 
@@ -81,7 +80,7 @@ def main():
     g_scaler = torch.cuda.amp.GradScaler()
     d_scaler = torch.cuda.amp.GradScaler()
     val_dataset = Dataset(root_dir=config.VAL_DIR)
-    val_loader = DataLoader(val_dataset, batch_size=config.BATCH_SIZE, shuffle=False)
+    val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False)
 
     for epoch in range(config.NUM_EPOCHS):
         train_fn(

@@ -2,6 +2,7 @@ import torch
 import config
 from torchvision.utils import save_image
 
+
 def save_some_examples(gen, val_loader, epoch, folder):
     x, y = next(iter(val_loader))
     x, y = x.to(config.DEVICE), y.to(config.DEVICE)
@@ -30,9 +31,5 @@ def load_checkpoint(checkpoint_file, model, optimizer, lr):
     checkpoint = torch.load(checkpoint_file, map_location=config.DEVICE)
     model.load_state_dict(checkpoint["state_dict"])
     optimizer.load_state_dict(checkpoint["optimizer"])
-
-    # If we don't do this then it will just have learning rate of old checkpoint
-    # and it will lead to many hours of debugging \:
     for param_group in optimizer.param_groups:
         param_group["lr"] = lr
-

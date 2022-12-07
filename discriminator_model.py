@@ -1,7 +1,8 @@
 import torch
 import torch.nn as nn
 
-#鉴别器
+
+# 鉴别器
 
 
 class CNNBlock(nn.Module):
@@ -16,12 +17,13 @@ class CNNBlock(nn.Module):
     def forward(self, x):
         return self.conv(x)
 
+
 class Discriminator(nn.Module):
     def __init__(self, in_channels=3, features=[64, 128, 256, 512]):
         super().__init__()
         self.initial = nn.Sequential(
-            nn.Conv2d(in_channels*2, features[0], kernel_size=4 , stride=2, padding=1, padding_mode="reflect"),
-            nn.LeakyReLU(0,2),
+            nn.Conv2d(in_channels * 2, features[0], kernel_size=4, stride=2, padding=1, padding_mode="reflect"),
+            nn.LeakyReLU(0, 2),
         )
 
         layers = []
@@ -45,14 +47,3 @@ class Discriminator(nn.Module):
         x = self.initial(x)
         x = self.model(x)
         return x
-def test():
-    x = torch.randn((1, 3, 286, 286))
-    y = torch.randn((1, 3, 286, 286))
-    model = Discriminator(in_channels=3)
-    preds = model(x,y)
-    print(model)
-    print(preds.shape)
-
-if __name__=="__main__":
-    test()
-
